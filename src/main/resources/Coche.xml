@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap 
+   PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+   "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap >
+	<select id="getCoche" resultClass="com.Coche">
+      SELECT 
+          ID_COCHE as id,
+          MARCA as marca,
+          MATRICULA as matricula,
+          FECHA_MATRICULA as fechaMatricula,
+          ID_PROPIETARIO as idPropietario
+       FROM COCHE
+	   WHERE ID_COCHE = #valor#
+	</select>
+
+	<select id="getCoches" resultClass="com.Coche">
+      SELECT 
+          ID_COCHE as id,
+          MARCA as marca,
+          MATRICULA as matricula,
+          FECHA_MATRICULA as fechaMatricula,
+          ID_PROPIETARIO as idPropietario
+       FROM COCHE
+	</select>
+	
+	<select id="getHashCoche" resultClass="java.util.Hashtable">
+      SELECT 
+          ID_COCHE as id,
+          MARCA as marca,
+          MATRICULA as matricula,
+          FECHA_MATRICULA as fechaMatricula,
+          ID_PROPIETARIO as idPropietario
+       FROM COCHE
+	   WHERE ID_COCHE = #valor#
+	</select>
+	
+	<insert id="insertCoche" >
+	   INSERT INTO COCHE VALUES (
+	   null,
+	   #marca#,
+	   #matricula#,
+	   #fechaMatricula#,
+	   #idPropietario#)
+	</insert>
+	
+	<update id="updateCoche" parameterClass="com.Coche">
+	   UPDATE COCHE SET
+          MARCA = #marca#,
+          MATRICULA = #matricula#,
+          FECHA_MATRICULA = #fechaMatricula#,
+          ID_PROPIETARIO = #idPropietario#
+	   WHERE
+	      ID_COCHE=#id#   
+	</update>
+	
+	<delete id="removeCoche">
+	   DELETE FROM COCHE WHERE ID_COCHE=#valor#
+	</delete>
+</sqlMap>

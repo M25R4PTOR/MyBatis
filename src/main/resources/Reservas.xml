@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap 
+   PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+   "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap >
+	<select id="getCampo" resultClass="com.Campo">
+      SELECT 
+          ID_CAMPO as id,
+          NOMBRE_C as nombre
+       FROM CAMPO
+	   WHERE ID_CAMPO = #valor#
+	</select>
+
+	<select id="getCampos" resultClass="com.Campo">
+      SELECT 
+          ID_CAMPO as id,
+          NOMBRE_C as nombre
+       FROM CAMPO
+	</select>
+	
+	
+	<insert id="insertCampo" >
+	   INSERT INTO CAMPO VALUES (
+	   null,
+	   #nombre#)
+	</insert>
+	
+	<update id="updateCampo" parameterClass="com.Campo">
+	   UPDATE CAMPO SET
+          NOMBRE_C = #nombre#
+	   WHERE
+	      ID_CAMPO=#id#   
+	</update>
+	
+	<delete id="removeCampo">
+	   DELETE FROM CAMPO WHERE ID_CAMPO=#valor#
+	</delete>
+	
+	<insert id="insertTipo" >
+	   INSERT INTO TIPO_DEPORTE VALUES (
+	   null,
+	   #nombre#)
+	</insert>
+	
+	<update id="updateTipo" parameterClass="com.TipoDeporte">
+	   UPDATE TIPO_DEPORTE SET
+          NOMBRE_D = #nombre#
+	   WHERE
+	      ID_TIPO=#id#   
+	</update>
+	
+	<delete id="removeTipo">
+	   DELETE FROM TIPO_DEPORTE WHERE ID_TIPO=#valor#
+	</delete>
+	
+	<select id="getTipo" resultClass="com.TipoDeporte">
+      SELECT 
+          ID_TIPO as id,
+          NOMBRE_D as nombre
+       FROM TIPO_DEPORTE
+	   WHERE ID_TIPO = #valor#
+	</select>
+	
+	<select id="getTipos" resultClass="com.TipoDeporte">
+      SELECT 
+          ID_TIPO as id,
+          NOMBRE_D as nombre
+       FROM TIPO_DEPORTE
+	</select>
+	
+	<insert id="insertReserva" >
+	   INSERT INTO RESERVA VALUES (
+	   null,
+	   #horaInicio#,
+	   #horaFin#,
+	   #dia#,
+	   #idTipoDeporte#,
+	   #idCampo#)
+	</insert>
+	
+	<select id="getReservaTipo" resultClass="com.Reserva">
+      SELECT 
+          ID_RESERVA as id,
+          HORA_INICIO as horaInicio,
+          HORA_FIN as horaFin,
+          DIA as dia,
+          ID_TIPO as idTipoDeporte,
+          ID_CAMPO as idCampo
+       FROM RESERVA
+       WHERE ID_TIPO = #valor#
+	</select>
+	
+	<select id="getReservaCampo" resultClass="com.Reserva">
+      SELECT 
+          ID_RESERVA as id,
+          HORA_INICIO as horaInicio,
+          HORA_FIN as horaFin,
+          DIA as dia,
+          ID_TIPO as idTipoDeporte,
+          ID_CAMPO as idCampo
+       FROM RESERVA
+       WHERE ID_CAMPO = #valor#
+	</select>
+	
+	<select id="getReservas" resultClass="com.Reserva">
+      SELECT 
+          ID_RESERVA as id,
+          HORA_INICIO as horaInicio,
+          HORA_FIN as horaFin,
+          DIA as dia,
+          ID_TIPO as idTipoDeporte,
+          ID_CAMPO as idCampo
+       FROM RESERVA
+	</select>
+</sqlMap>
